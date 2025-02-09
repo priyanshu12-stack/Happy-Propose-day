@@ -19,31 +19,24 @@
 
 	<script src="script.js"></script>
 
- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var audio = document.getElementById("bg-music");
 
-            // Restore music position if available
-            if (localStorage.getItem("musicTime")) {
-                audio.currentTime = localStorage.getItem("musicTime");
-            }
-
-            // Try to play the music
-            audio.play().catch(function(error) {
-                console.log("Autoplay blocked, user interaction needed.");
-            });
-
-            // Save music time before page reload or navigation
-            window.addEventListener("beforeunload", function () {
-                localStorage.setItem("musicTime", audio.currentTime);
-            });
-        });
-
-        function login() {
-            document.getElementById("login-form").style.display = "none";
-            document.getElementById("result").innerHTML = "<h2>Welcome!</h2>";
-        }
-    </script>
 </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var audio = document.getElementById("bg-music");
 
+       
+        if (localStorage.getItem("musicTime")) {
+            audio.currentTime = localStorage.getItem("musicTime");
+        }
+
+        audio.play().catch(function(error) {
+            console.log("Autoplay blocked, user interaction needed.");
+        });
+
+        window.addEventListener("beforeunload", function () {
+            localStorage.setItem("musicTime", audio.currentTime);
+        });
+    });
+</script>
