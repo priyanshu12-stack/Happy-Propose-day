@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Love</title>
-	<link rel="stylesheet" href="style.css">
+    <title>Love</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<audio id="bg-music" autoplay loop>
-    <source src="Ishq Hai X Rangrez-MobCup.vip.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
-	
-	<form id="login-form">
-		<label for="code">Enter Your Name:</label>
-		<input type="password" id="code" name="code">
-		<button id="submit-btn">Login</button>
-	</form>
-	<div id="result"></div>
 
-	<script src="script.js"></script>
+   
+    <audio id="bg-music" autoplay loop>
+        <source src="Ishq Hai X Rangrez-MobCup.vip.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
+
+    <form id="login-form">
+        <label for="code">Enter Your Name:</label>
+        <input type="password" id="code" name="code">
+        <button id="submit-btn" type="button" onclick="login()">Login</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var audio = document.getElementById("bg-music");
+
+            if (localStorage.getItem("musicTime")) {
+                audio.currentTime = localStorage.getItem("musicTime");
+            }
+
+           
+            audio.play().catch(function(error) {
+                console.log("Autoplay blocked, user interaction needed.");
+            });
+
+          
+            window.addEventListener("beforeunload", function () {
+                localStorage.setItem("musicTime", audio.currentTime);
+            });
+        });
+
+        function login() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("result").innerHTML = "<h2>Welcome!</h2>";
+        }
+    </script>
 
 </body>
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var audio = document.getElementById("bg-music");
-
-       
-        if (localStorage.getItem("musicTime")) {
-            audio.currentTime = localStorage.getItem("musicTime");
-        }
-
-        audio.play().catch(function(error) {
-            console.log("Autoplay blocked, user interaction needed.");
-        });
-
-        window.addEventListener("beforeunload", function () {
-            localStorage.setItem("musicTime", audio.currentTime);
-        });
-    });
-</script>
